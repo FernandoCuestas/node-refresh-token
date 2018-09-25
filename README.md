@@ -15,8 +15,8 @@ post data =>
 
 ```
 {
-	"email": "shahid@codeforgeek.com",
-	"name": "Shahid"
+	"email": "name@email.com",
+	"name": "pass"
 }
 ```
 
