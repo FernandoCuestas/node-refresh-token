@@ -1,12 +1,12 @@
-const jwt = require('jsonwebtoken')
-const config = require('./config')
+import jwt from 'jsonwebtoken';
+import config from './config';
 
-module.exports = (req,res,next) => {
+export default (req,res,next) => {
   const token = req.body.token || req.query.token || req.headers['x-access-token']
   // decode token
   if (token) {
     // verifies secret and checks exp
-    jwt.verify(token, config.secret, function(err, decoded) {
+    jwt.verify(token, config.secret, (err, decoded) => {
         if (err) {
             return res.status(401).json({"error": true, "message": 'Unauthorized access.' });
         }
@@ -21,4 +21,4 @@ module.exports = (req,res,next) => {
         "message": 'No token provided.'
     });
   }
-}
+};

@@ -1,8 +1,8 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const jwt = require('jsonwebtoken')
+import express from 'express';
+import bodyParser from 'body-parser';
+import jwt from 'jsonwebtoken';
 const router = express.Router()
-const config = require('./config')
+import config from './config';
 const tokenList = {}
 const app = express()
 
@@ -10,8 +10,8 @@ router.get('/', (req,res) => {
     res.send('Ok');
 })
 
-router.post('/login', (req,res) => {
-    const postData = req.body;
+router.post('/login', ({body}, res) => {
+    const postData = body;
     const user = {
         "email": postData.email,
         "name": postData.name
@@ -28,9 +28,9 @@ router.post('/login', (req,res) => {
     res.status(200).json(response);
 })
 
-router.post('/token', (req,res) => {
+router.post('/token', ({body}, res) => {
     // refresh the damn token
-    const postData = req.body
+    const postData = body
     // if refresh token exists
     if((postData.refreshToken) && (postData.refreshToken in tokenList)) {
         const user = {
